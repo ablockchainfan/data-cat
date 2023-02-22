@@ -66,7 +66,13 @@ with st.sidebar:
             os.listdir("data"))
     with st.container():
         f = open("./data/" + option, "r")
-        st.write(f.read())
+
+        myline = f.readline()
+        while myline:
+            myline = f.readline()
+            st.write(myline)
+
+        f.close()   
 
 if "vectorstore.pkl" in os.listdir("."):
     with open("vectorstore.pkl", "rb") as f:
