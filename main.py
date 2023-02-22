@@ -15,7 +15,8 @@ dirName = '.'
 
 OpenAI.api_key = st.secrets["OPENAI_API_KEY"]
 
-isExist = os.path.exists("data")
+path = "./data"
+isExist = os.path.exists(path)
 if not isExist:
    # Create a new directory because it does not exist
    os.makedirs(path)
