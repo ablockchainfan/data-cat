@@ -62,6 +62,9 @@ if "vectorstore.pkl" in os.listdir("."):
         print("Loading vectorstore...")
 
     chain = get_chain(vectorstore)
+else:
+    with st.spinner('Document is being vectorized...'):
+        embed_doc()
 
 if "generated" not in st.session_state:
     st.session_state["generated"] = []
