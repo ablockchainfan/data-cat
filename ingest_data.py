@@ -16,8 +16,8 @@ def embed_doc():
         # Split text
         text_splitter = RecursiveCharacterTextSplitter(
             # Set a really small chunk size, just to show.
-            chunk_size = 1000,
-            chunk_overlap  = 0,
+            chunk_size = 2000,
+            chunk_overlap  = 20,
             length_function = len,
         )
         print("111")

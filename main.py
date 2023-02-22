@@ -64,9 +64,10 @@ with st.sidebar:
     option = st.selectbox(
             'Which file you want to see?',
             os.listdir("data"))
-    with st.container():
-        f = open("./data/" + option, "r")
+ 
+    f = open("./data/" + option, "r")
 
+    with st.container():
         myline = f.readline()
         while myline:
             myline = f.readline()
@@ -74,6 +75,10 @@ with st.sidebar:
 
         f.close()   
 
+    if st.button("Delete all files"):
+        files = os.listdir("data")
+        for file in files:
+            os.remove("data/" + file)
 if "vectorstore.pkl" in os.listdir("."):
     with open("vectorstore.pkl", "rb") as f:
         vectorstore = pickle.load(f)
