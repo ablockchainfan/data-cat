@@ -75,7 +75,7 @@ with st.sidebar:
 
         with st.container():
             for line in mylist:
-                st.write(line)
+                st.text(line)
 
 
 
