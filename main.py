@@ -8,12 +8,12 @@ from ingest_data import embed_doc
 from query_data import _template, CONDENSE_QUESTION_PROMPT, QA_PROMPT, get_chain
 import pickle
 import os
-
+import openai
 import glob
 
 dirName = '.'
 
-openai.api_key = st.secrets["OPENAI_API_KEY"]
+OpenAI.api_key = st.secrets["OPENAI_API_KEY"]
 
 isExist = os.path.exists("data")
 if not isExist:
