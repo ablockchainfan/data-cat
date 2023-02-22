@@ -60,6 +60,13 @@ if "vectorstore.pkl" not in os.listdir("."):
     with st.spinner('Document is being vectorized...'):
         embed_doc()
 
+with st.sidebar:
+        option = st.selectbox(
+                'Which file you want to see?',
+                os.listdir("data"))
+        with st.container():
+            f = open(option, "r")
+            st.write(f.read())
 
 if "vectorstore.pkl" in os.listdir("."):
     with open("vectorstore.pkl", "rb") as f:
@@ -101,16 +108,8 @@ if user_input:
 
 if st.session_state["generated"]:
     with st.container():
-        chatCol, fileCol = st.columns((1,1))
-        with chatCol:
             st.subheader("Chat hisotory" )
             for i in range(len(st.session_state["generated"]) - 1, -1, -1):
                 message(st.session_state["generated"][i], key=str(i))
                 message(st.session_state["past"][i], is_user=True, key=str(i) + "_user")
-        with fileCol:
-            option = st.selectbox(
-                'Which file you want to see?',
-                os.listdir("data"))
-            f = open(option, "r")
-            st.write(f.read())
     
