@@ -45,6 +45,7 @@ uploaded_file = st.file_uploader("Upload a document you would like to chat about
 if uploaded_file is not None and uploaded_file.name not in os.listdir("data"):
     # write the file to data directory
     with open("data/" + uploaded_file.name, "wb") as f:
+        content = uploaded_file.getbuffer()
         f.write(uploaded_file.getbuffer())
     st.write("File uploaded successfully")
     with st.spinner('Document is being vectorized...'):
@@ -99,9 +100,17 @@ if user_input:
     
 
 if st.session_state["generated"]:
-
-    for i in range(len(st.session_state["generated"]) - 1, -1, -1):
-        message(st.session_state["generated"][i], key=str(i))
-        message(st.session_state["past"][i], is_user=True, key=str(i) + "_user")
-    
+    with st.container():
+        chatCol, fileCol = st.columns(1,1)
+        with chatCol:
+            st.subheader("Chat hisotory" )
+            for i in range(len(st.session_state["generated"]) - 1, -1, -1):
+                message(st.session_state["generated"][i], key=str(i))
+                message(st.session_state["past"][i], is_user=True, key=str(i) + "_user")
+        with fileCol:
+            option = st.selectbox(
+                'Which file you want to see?',
+                os.listdir("data"))
+            f = open(option, "r")
+            st.write(f.read())
     
