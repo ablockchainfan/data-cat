@@ -10,6 +10,10 @@ import pickle
 import os
 import openai
 import glob
+import nltk
+
+nltk.download('popular')
+nltk.download('punkt')
 
 dirName = '.'
 
