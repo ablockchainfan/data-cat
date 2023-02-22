@@ -4,3 +4,4 @@ unstructured
 faiss-cpu
 streamlit
 streamlit-chat
+nltk
