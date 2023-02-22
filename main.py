@@ -61,12 +61,12 @@ if "vectorstore.pkl" not in os.listdir("."):
         embed_doc()
 
 with st.sidebar:
-        option = st.selectbox(
-                'Which file you want to see?',
-                os.listdir("data"))
-        with st.container():
-            f = open(option, "r")
-            st.write(f.read())
+    option = st.selectbox(
+            'Which file you want to see?',
+            os.listdir("data"))
+    with st.container():
+        f = open("./data/" + option, "r")
+        st.write(f.read())
 
 if "vectorstore.pkl" in os.listdir("."):
     with open("vectorstore.pkl", "rb") as f:
