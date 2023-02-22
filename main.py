@@ -13,6 +13,13 @@ import glob
 
 dirName = '.'
 
+openai.api_key = st.secrets["OPENAI_API_KEY"]
+
+isExist = os.path.exists("data")
+if not isExist:
+   # Create a new directory because it does not exist
+   os.makedirs(path)
+               
 files = [f for f in glob.glob(dirName + "\*.pkl", recursive=False)]
 files = [item.replace(".pkl", "") for item in files]
 # def load_chain():
