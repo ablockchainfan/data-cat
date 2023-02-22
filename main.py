@@ -55,6 +55,10 @@ if uploaded_file is not None and uploaded_file.name not in os.listdir("data"):
 #     files)
 
 # st.write('You selected:', option)
+if "vectorstore.pkl" not in os.listdir("."):
+    with st.spinner('Document is being vectorized...'):
+        embed_doc()
+
 
 if "vectorstore.pkl" in os.listdir("."):
     with open("vectorstore.pkl", "rb") as f:
@@ -62,9 +66,6 @@ if "vectorstore.pkl" in os.listdir("."):
         print("Loading vectorstore...")
 
     chain = get_chain(vectorstore)
-else:
-    with st.spinner('Document is being vectorized...'):
-        embed_doc()
 
 if "generated" not in st.session_state:
     st.session_state["generated"] = []
@@ -86,8 +87,7 @@ if user_input:
     # if checkbox is checked, print docs
     # st.session_state["input"] = ""
     print(len(docs))
-    # output = chain.run(input=user_input, vectorstore = vectorstore, context=docs[:2], chat_history = [], question= user_input, QA_PROMPT=QA_PROMPT, CONDENSE_QUESTION_PROMPT=CONDENSE_QUESTION_PROMPT, template=_template)
-    output = "result"
+    output = chain.run(input=user_input, vectorstore = vectorstore, context=docs[:2], chat_history = [], question= user_input, QA_PROMPT=QA_PROMPT, CONDENSE_QUESTION_PROMPT=CONDENSE_QUESTION_PROMPT, template=_template)
 
     st.session_state.past.append(user_input)
     print(st.session_state.past)
