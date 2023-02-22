@@ -101,7 +101,7 @@ if user_input:
 
 if st.session_state["generated"]:
     with st.container():
-        chatCol, fileCol = st.columns(1,1)
+        chatCol, fileCol = st.columns((1,1))
         with chatCol:
             st.subheader("Chat hisotory" )
             for i in range(len(st.session_state["generated"]) - 1, -1, -1):
